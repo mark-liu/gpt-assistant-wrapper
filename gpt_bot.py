@@ -68,10 +68,10 @@ def get_multiline_input(prompt, end_marker="EOF"):
     return "\n".join(lines)
 
 def chat_with_bot(assistant_id):
-    print("Chat with the bot! Type 'quit' to exit.")
+    print("\nChat with the bot! Type 'quit' to exit.")
     thread = client.beta.threads.create()
     while True:
-        user_input = get_multiline_input("You:")
+        user_input = get_multiline_input("\nYou:")
         if user_input.lower() in ['quit', 'exit']:
             print("Exiting chat.")
             break
