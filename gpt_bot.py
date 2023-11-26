@@ -55,11 +55,23 @@ def print_latest_assistant_message(messages):
     else:
         print("No messages from the assistant found.")
 
+def get_multiline_input(prompt, end_marker="EOF"):
+    print(prompt)
+    print(f"(Type '{end_marker}' on a new line when you're done)")
+
+    lines = []
+    while True:
+        line = input()
+        if line == end_marker:
+            break
+        lines.append(line)
+    return "\n".join(lines)
+
 def chat_with_bot(assistant_id):
     print("Chat with the bot! Type 'quit' to exit.")
     thread = client.beta.threads.create()
     while True:
-        user_input = input("You: ")
+        user_input = get_multiline_input("You:")
         if user_input.lower() in ['quit', 'exit']:
             print("Exiting chat.")
             break
